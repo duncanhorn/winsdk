@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cassert>
 #include <system_error>
 
 #include "../winsdk/error.h"

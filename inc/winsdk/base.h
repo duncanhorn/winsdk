@@ -1,6 +1,7 @@
 // Base types/typedefs and functions common across most of the SDK
 #pragma once
 
+#include <cstddef>
 #include <cstdint>
 
 extern "C"

@@ -25,13 +25,22 @@ for ($i = $StartLine; $i -lt $EndLine; ++$i)
 
     $text[$i] = (ReplaceTypeName $text[$i] "WORD" "std::uint16_t")
     $text[$i] = (ReplaceTypeName $text[$i] "DWORD" "std::uint32_t")
+    $text[$i] = (ReplaceTypeName $text[$i] "SIZE_T" "std::size_t")
 
     $text[$i] = (ReplaceTypeName $text[$i] "PSTR" "char*")
+    $text[$i] = (ReplaceTypeName $text[$i] "LPSTR" "char*")
     $text[$i] = (ReplaceTypeName $text[$i] "PCSTR" "const char*")
+    $text[$i] = (ReplaceTypeName $text[$i] "LPCSTR" "const char*")
     $text[$i] = (ReplaceTypeName $text[$i] "PWSTR" "wchar_t*")
+    $text[$i] = (ReplaceTypeName $text[$i] "LPWSTR" "wchar_t*")
     $text[$i] = (ReplaceTypeName $text[$i] "PCWSTR" "const wchar_t*")
+    $text[$i] = (ReplaceTypeName $text[$i] "LPCWSTR" "const wchar_t*")
 
     $text[$i] = (ReplaceTypeName $text[$i] "PVOID" "void*")
+    $text[$i] = (ReplaceTypeName $text[$i] "LPVOID" "void*")
+    $text[$i] = (ReplaceTypeName $text[$i] "LPCVOID" "const void*")
+
+    $text[$i] = (ReplaceTypeName $text[$i] "LPSECURITY_ATTRIBUTES" "security_attributes*")
 }
 
-$text | Out-File $File
+$text | Out-File $File -Encoding utf8

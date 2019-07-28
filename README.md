@@ -9,7 +9,7 @@ This project is an attempt to provide a smaller, more separated, and more standa
 * Rename types/constants to more "C++ friendly" snake_case names
 
 ## Type mappings
-Here's a (likely incomplete) list of the mapping between "Windows types" and their equivalent type(s) used in this project:
+Here's an (incomplete) list of the mapping between "Windows types" and their equivalent type(s) used in this project:
 
 |Windows Type|Actual Type|
 |------------|-----------|

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cassert>
+
 #include "../winsdk/base.h"
 #include "unique_resource.h"
 
@@ -13,7 +15,8 @@ namespace win32
 
             void destroy(value_type value) const noexcept
             {
-                winsdk::CloseHandle(value);
+                [[maybe_unused]] auto result = winsdk::CloseHandle(value);
+                assert(result);
             }
         };
     }
@@ -22,7 +25,7 @@ namespace win32
     {
         static constexpr value_type default_value = nullptr;
 
-        bool valid(value_type value) const noexcept
+        constexpr bool valid(value_type value) const noexcept
         {
             return value != nullptr;
         }
