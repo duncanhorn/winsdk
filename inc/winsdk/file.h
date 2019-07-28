@@ -7,14 +7,14 @@ extern "C"
 namespace winsdk
 {
     // Constants
-    constexpr std::uint32_t generic_read = 0x80000000;
-    constexpr std::uint32_t generic_write = 0x40000000;
-    constexpr std::uint32_t generic_execute = 0x20000000;
-    constexpr std::uint32_t generic_all = 0x10000000;
+    constexpr std::uint32_t generic_read = 0x80000000ul;
+    constexpr std::uint32_t generic_write = 0x40000000ul;
+    constexpr std::uint32_t generic_execute = 0x20000000ul;
+    constexpr std::uint32_t generic_all = 0x10000000ul;
 
-    constexpr std::uint32_t file_share_read = 0x00000001;
-    constexpr std::uint32_t file_share_write = 0x00000002;
-    constexpr std::uint32_t file_share_delete = 0x00000004;
+    constexpr std::uint32_t file_share_read = 0x00000001ul;
+    constexpr std::uint32_t file_share_write = 0x00000002ul;
+    constexpr std::uint32_t file_share_delete = 0x00000004ul;
 
     constexpr std::uint32_t create_new = 1;
     constexpr std::uint32_t create_always = 2;
@@ -22,43 +22,43 @@ namespace winsdk
     constexpr std::uint32_t open_always = 4;
     constexpr std::uint32_t truncate_existing = 5;
 
-    constexpr std::uint32_t file_attribute_readonly = 0x00000001;
-    constexpr std::uint32_t file_attribute_hidden = 0x00000002;
-    constexpr std::uint32_t file_attribute_system = 0x00000004;
-    constexpr std::uint32_t file_attribute_directory = 0x00000010;
-    constexpr std::uint32_t file_attribute_archive = 0x00000020;
-    constexpr std::uint32_t file_attribute_device = 0x00000040;
-    constexpr std::uint32_t file_attribute_normal = 0x00000080;
-    constexpr std::uint32_t file_attribute_temporary = 0x00000100;
-    constexpr std::uint32_t file_attribute_sparse_file = 0x00000200;
-    constexpr std::uint32_t file_attribute_reparse_point = 0x00000400;
-    constexpr std::uint32_t file_attribute_compressed = 0x00000800;
-    constexpr std::uint32_t file_attribute_offline = 0x00001000;
-    constexpr std::uint32_t file_attribute_not_content_indexed = 0x00002000;
-    constexpr std::uint32_t file_attribute_encrypted = 0x00004000;
-    constexpr std::uint32_t file_attribute_integrity_stream = 0x00008000;
-    constexpr std::uint32_t file_attribute_virtual = 0x00010000;
-    constexpr std::uint32_t file_attribute_no_scrub_data = 0x00020000;
-    constexpr std::uint32_t file_attribute_ea = 0x00040000;
-    constexpr std::uint32_t file_attribute_pinned = 0x00080000;
-    constexpr std::uint32_t file_attribute_unpinned = 0x00100000;
-    constexpr std::uint32_t file_attribute_recall_on_open = 0x00040000;
-    constexpr std::uint32_t file_attribute_recall_on_data_access = 0x00400000;
-    constexpr std::uint32_t file_attribute_strictly_sequential = 0x20000000;
+    constexpr std::uint32_t file_attribute_readonly = 0x00000001ul;
+    constexpr std::uint32_t file_attribute_hidden = 0x00000002ul;
+    constexpr std::uint32_t file_attribute_system = 0x00000004ul;
+    constexpr std::uint32_t file_attribute_directory = 0x00000010ul;
+    constexpr std::uint32_t file_attribute_archive = 0x00000020ul;
+    constexpr std::uint32_t file_attribute_device = 0x00000040ul;
+    constexpr std::uint32_t file_attribute_normal = 0x00000080ul;
+    constexpr std::uint32_t file_attribute_temporary = 0x00000100ul;
+    constexpr std::uint32_t file_attribute_sparse_file = 0x00000200ul;
+    constexpr std::uint32_t file_attribute_reparse_point = 0x00000400ul;
+    constexpr std::uint32_t file_attribute_compressed = 0x00000800ul;
+    constexpr std::uint32_t file_attribute_offline = 0x00001000ul;
+    constexpr std::uint32_t file_attribute_not_content_indexed = 0x00002000ul;
+    constexpr std::uint32_t file_attribute_encrypted = 0x00004000ul;
+    constexpr std::uint32_t file_attribute_integrity_stream = 0x00008000ul;
+    constexpr std::uint32_t file_attribute_virtual = 0x00010000ul;
+    constexpr std::uint32_t file_attribute_no_scrub_data = 0x00020000ul;
+    constexpr std::uint32_t file_attribute_ea = 0x00040000ul;
+    constexpr std::uint32_t file_attribute_pinned = 0x00080000ul;
+    constexpr std::uint32_t file_attribute_unpinned = 0x00100000ul;
+    constexpr std::uint32_t file_attribute_recall_on_open = 0x00040000ul;
+    constexpr std::uint32_t file_attribute_recall_on_data_access = 0x00400000ul;
+    constexpr std::uint32_t file_attribute_strictly_sequential = 0x20000000ul;
 
-    constexpr std::uint32_t file_flag_write_through = 0x80000000;
-    constexpr std::uint32_t file_flag_overlapped = 0x40000000;
-    constexpr std::uint32_t file_flag_no_buffering = 0x20000000;
-    constexpr std::uint32_t file_flag_random_access = 0x10000000;
-    constexpr std::uint32_t file_flag_sequential_scan = 0x08000000;
-    constexpr std::uint32_t file_flag_delete_on_close = 0x04000000;
-    constexpr std::uint32_t file_flag_backup_semantics = 0x02000000;
-    constexpr std::uint32_t file_flag_posix_semantics = 0x01000000;
-    constexpr std::uint32_t file_flag_session_aware = 0x00800000;
-    constexpr std::uint32_t file_flag_open_reparse_point = 0x00200000;
-    constexpr std::uint32_t file_flag_open_no_recall = 0x00100000;
-    constexpr std::uint32_t file_flag_first_pipe_instance = 0x00080000;
-    constexpr std::uint32_t file_flag_open_requiring_oplock = 0x00040000;
+    constexpr std::uint32_t file_flag_write_through = 0x80000000ul;
+    constexpr std::uint32_t file_flag_overlapped = 0x40000000ul;
+    constexpr std::uint32_t file_flag_no_buffering = 0x20000000ul;
+    constexpr std::uint32_t file_flag_random_access = 0x10000000ul;
+    constexpr std::uint32_t file_flag_sequential_scan = 0x08000000ul;
+    constexpr std::uint32_t file_flag_delete_on_close = 0x04000000ul;
+    constexpr std::uint32_t file_flag_backup_semantics = 0x02000000ul;
+    constexpr std::uint32_t file_flag_posix_semantics = 0x01000000ul;
+    constexpr std::uint32_t file_flag_session_aware = 0x00800000ul;
+    constexpr std::uint32_t file_flag_open_reparse_point = 0x00200000ul;
+    constexpr std::uint32_t file_flag_open_no_recall = 0x00100000ul;
+    constexpr std::uint32_t file_flag_first_pipe_instance = 0x00080000ul;
+    constexpr std::uint32_t file_flag_open_requiring_oplock = 0x00040000ul;
 
     // Functions
     __declspec(dllimport)
