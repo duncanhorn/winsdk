@@ -23,4 +23,4 @@ Here's a (likely incomplete) list of the mapping between "Windows types" and the
 |`PVOID`|`void*`|
 
 ## Namespace and Linking
-All function declarations are placed in the `win32::` namespace. This is primarily to avoid conflicts if the actual Windows SDK headers are included somewhere (e.g. in a small subset of a project). Since these functions are declared as `extern "C"`, their linkage will be done against the same name with the namespace removed (e.g. `win32::CreateFileA` will link against `::CreateFileA`).
+All function declarations are placed in the `winsdk::` namespace. This is primarily to avoid conflicts if the actual Windows SDK headers are included somewhere (e.g. in a small subset of a project). Since these functions are declared as `extern "C"`, their linkage will be done against the same name with the namespace removed (e.g. `winsdk::CreateFileA` will link against `::CreateFileA`).

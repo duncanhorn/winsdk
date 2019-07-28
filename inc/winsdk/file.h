@@ -4,7 +4,7 @@
 
 extern "C"
 {
-namespace win32
+namespace winsdk
 {
     // Constants
     constexpr std::uint32_t generic_read = 0x80000000;
