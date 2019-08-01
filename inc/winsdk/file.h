@@ -85,6 +85,15 @@ namespace winsdk
     constexpr std::uint32_t page_enclave_unvalidated = 0x20000000;
     constexpr std::uint32_t page_enclave_decommit = 0x10000000;
 
+    constexpr std::uint32_t file_map_write = 0x00000002ul;
+    constexpr std::uint32_t file_map_read = 0x00000004ul;
+    constexpr std::uint32_t file_map_all_access = 0x000f001ful;
+    constexpr std::uint32_t file_map_execute = 0x00000020ul;
+    constexpr std::uint32_t file_map_copy = 0x00000001ul;
+    constexpr std::uint32_t file_map_reserve = 0x80000000ul;
+    constexpr std::uint32_t file_map_targets_invalid = 0x40000000ul;
+    constexpr std::uint32_t file_map_large_pages = 0x20000000ul;
+
     // Functions
     __declspec(dllimport)
     bool_t __stdcall CreateDirectoryA(const char* pathName, security_attributes* securityAttributes);
@@ -145,6 +154,15 @@ namespace winsdk
         std::uint32_t maximumSizeHigh,
         std::uint32_t maximumSizeLow,
         const char* name);
+
+    __declspec(dllimport)
+    handle_t __stdcall CreateFileMappingW(
+        handle_t file,
+        security_attributes* fileMappingAttributes,
+        std::uint32_t protect,
+        std::uint32_t maximumSizeHigh,
+        std::uint32_t maximumSizeLow,
+        const wchar_t* name);
 
     __declspec(dllimport)
     void* __stdcall MapViewOfFile(

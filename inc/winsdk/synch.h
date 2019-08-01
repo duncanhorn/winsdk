@@ -7,12 +7,12 @@ extern "C"
 namespace winsdk
 {
     // Constants
-    constexpr std::uint32_t infinite = 0xFFFFFFFFul;
+    constexpr std::uint32_t infinite = 0xFFFFFFFF;
 
-    constexpr std::uint32_t wait_object_0 = 0x00000000ul;
-    constexpr std::uint32_t wait_abandoned = 0x00000080ul;
-    constexpr std::uint32_t wait_timeout = 0x00000102ul;
-    constexpr std::uint32_t wait_failed = 0xFFFFFFFFul;
+    constexpr std::uint32_t wait_object_0 = 0x00000000;
+    constexpr std::uint32_t wait_abandoned = 0x00000080;
+    constexpr std::uint32_t wait_timeout = 0x00000102;
+    constexpr std::uint32_t wait_failed = 0xFFFFFFFF;
 
     // Functions
     __declspec(dllimport)

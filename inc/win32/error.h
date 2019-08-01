@@ -61,7 +61,7 @@ namespace win32
         };
     }
 
-    const std::error_category& hresult_category() noexcept
+    inline const std::error_category& hresult_category() noexcept
     {
         static const details::hresult_category result;
         return result;
