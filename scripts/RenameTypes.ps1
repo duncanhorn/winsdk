@@ -21,14 +21,17 @@ if (!$EndLine) { $EndLine = $text.Length }
 for ($i = $StartLine; $i -lt $EndLine; ++$i)
 {
     $text[$i] = (ReplaceTypeName $text[$i] "HANDLE" "handle_t")
+    $text[$i] = (ReplaceTypeName $text[$i] "PHANDLE" "handle_t*")
     $text[$i] = (ReplaceTypeName $text[$i] "BOOL" "bool_t")
     $text[$i] = (ReplaceTypeName $text[$i] "PBOOL" "bool_t*")
 
     $text[$i] = (ReplaceTypeName $text[$i] "BYTE" "std::uint8_t")
+    $text[$i] = (ReplaceTypeName $text[$i] "LPBYTE" "std::uint8_t*")
     $text[$i] = (ReplaceTypeName $text[$i] "UCHAR" "std::uint8_t")
     $text[$i] = (ReplaceTypeName $text[$i] "WORD" "std::uint16_t")
     $text[$i] = (ReplaceTypeName $text[$i] "USHORT" "std::uint16_t")
     $text[$i] = (ReplaceTypeName $text[$i] "DWORD" "std::uint32_t")
+    $text[$i] = (ReplaceTypeName $text[$i] "LPDWORD" "std::uint32_t*")
     $text[$i] = (ReplaceTypeName $text[$i] "DWORD64" "std::uint64_t")
     $text[$i] = (ReplaceTypeName $text[$i] "LONG" "std::int32_t")
     $text[$i] = (ReplaceTypeName $text[$i] "ULONG" "std::uint32_t")
@@ -57,6 +60,7 @@ for ($i = $StartLine; $i -lt $EndLine; ++$i)
     $text[$i] = (ReplaceTypeName $text[$i] "LPCVOID" "const void*")
 
     $text[$i] = (ReplaceTypeName $text[$i] "LPSECURITY_ATTRIBUTES" "security_attributes*")
+    $text[$i] = (ReplaceTypeName $text[$i] "LPOVERLAPPED" "overlapped*")
 }
 
 $text | Out-File $File -Encoding utf8

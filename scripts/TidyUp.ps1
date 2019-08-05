@@ -19,11 +19,11 @@ for ($i = $StartLine; $i -lt $EndLine; ++$i)
     $text[$i] = $text[$i] -replace "STDMETHODV\((\w+)\)","virtual std::int32_t __cdecl `$1"
     $text[$i] = $text[$i] -replace " PURE;", " noexcept = 0;"
 
-    $text[$i] = $text[$i] -replace "_In\w* +",""
-    $text[$i] = $text[$i] -replace "_In\w*\([^\)]+\) +",""
-    $text[$i] = $text[$i] -replace "_Out_\w* +",""
-    $text[$i] = $text[$i] -replace "_Out_\w*\([^\)]+\) +",""
-    $text[$i] = $text[$i] -replace "_Reserved_ +",""
+    $text[$i] = $text[$i] -replace " _In\w* +"," "
+    $text[$i] = $text[$i] -replace " _In\w*\([^\)]+\) +"," "
+    $text[$i] = $text[$i] -replace " _Out_\w* +"," "
+    $text[$i] = $text[$i] -replace " _Out_\w*\([^\)]+\) +"," "
+    $text[$i] = $text[$i] -replace " _Reserved_ +"," "
 
     $text[$i] = $text[$i] -replace "_t A","_t a"
     $text[$i] = $text[$i] -replace "_t B","_t b"
