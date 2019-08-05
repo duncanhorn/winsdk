@@ -6,6 +6,26 @@ extern "C"
 {
 namespace winsdk
 {
+    // Constants
+    constexpr std::uint32_t startf_useshowwindow = 0x00000001;
+    constexpr std::uint32_t startf_usesize = 0x00000002;
+    constexpr std::uint32_t startf_useposition = 0x00000004;
+    constexpr std::uint32_t startf_usecountchars = 0x00000008;
+    constexpr std::uint32_t startf_usefillattribute = 0x00000010;
+    constexpr std::uint32_t startf_runfullscreen = 0x00000020;
+    constexpr std::uint32_t startf_forceonfeedback = 0x00000040;
+    constexpr std::uint32_t startf_forceofffeedback = 0x00000080;
+    constexpr std::uint32_t startf_usestdhandles = 0x00000100;
+    constexpr std::uint32_t startf_usehotkey = 0x00000200;
+    constexpr std::uint32_t startf_titleislinkname = 0x00000800;
+    constexpr std::uint32_t startf_titleisappid = 0x00001000;
+    constexpr std::uint32_t startf_preventpinning = 0x00002000;
+    constexpr std::uint32_t startf_untrustedsource = 0x00008000;
+
+    constexpr std::uint32_t std_input_handle = 0xFFFFFFF6; // -10
+    constexpr std::uint32_t std_output_handle = 0xFFFFFFF5; // -11
+    constexpr std::uint32_t std_error_handle = 0xFFFFFFF4; // -12
+
     // Structures
     struct startupinfoa
     {
@@ -102,5 +122,8 @@ namespace winsdk
     bool_t __stdcall GetExitCodeProcess(
         handle_t process,
         std::uint32_t* exitCode);
+
+    __declspec(dllimport)
+    handle_t __stdcall GetStdHandle(std::uint32_t stdHandle);
 }
 }

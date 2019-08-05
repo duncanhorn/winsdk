@@ -45,6 +45,8 @@ namespace win32
         const value_type& get() const noexcept { return data.value(); }
         value_type& get() noexcept { return data.value(); }
 
+        value_type* put() noexcept { reset(); return &data.value(); }
+
         void swap(unique_resource& other) noexcept
         {
             std::swap(data, other.data);
