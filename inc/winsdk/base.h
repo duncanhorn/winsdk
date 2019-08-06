@@ -10,8 +10,16 @@ extern "C"
 namespace winsdk
 {
     // Type definitions
+    namespace details
+    {
+        struct hwnd_t;
+    }
+
     using bool_t = std::int32_t;
     using handle_t = void*;
+    using hwnd_t = details::hwnd_t*;
+
+    using farproc = std::intptr_t(__stdcall*)();
 
     // Constants
     inline const handle_t invalid_handle_value = reinterpret_cast<handle_t>(static_cast<std::intptr_t>(-1));

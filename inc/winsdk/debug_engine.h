@@ -27,72 +27,72 @@ namespace winsdk
     struct extstacktrace64;
 
     // Type definitions
-    using windbg_output_routine = void (__cdecl)(const char* format, ...);
+    using windbg_output_routine = void (__cdecl*)(const char* format, ...);
 
-    using windbg_get_expression32 = std::uint32_t (__stdcall)(const char* expression);
+    using windbg_get_expression32 = std::uint32_t (__stdcall*)(const char* expression);
 
-    using windbg_get_expression64 = std::uint64_t (__stdcall)(const char* expression);
+    using windbg_get_expression64 = std::uint64_t (__stdcall*)(const char* expression);
 
-    using windbg_get_symbol32 = void (__stdcall)(std::uint32_t offset, char* buffer, std::uint32_t* displacement);
+    using windbg_get_symbol32 = void (__stdcall*)(std::uint32_t offset, char* buffer, std::uint32_t* displacement);
 
-    using windbg_get_symbol64 = void (__stdcall)(std::uint64_t offset, char* buffer, std::uint64_t* displacement);
+    using windbg_get_symbol64 = void (__stdcall*)(std::uint64_t offset, char* buffer, std::uint64_t* displacement);
 
-    using windbg_disasm32 = std::uint32_t (__stdcall)(
+    using windbg_disasm32 = std::uint32_t (__stdcall*)(
         std::uint32_t* offset,
         const char* buffer,
         std::uint32_t showEffectiveAddress);
 
-    using windbg_disasm64 = std::uint32_t (__stdcall)(
+    using windbg_disasm64 = std::uint32_t (__stdcall*)(
         std::uint64_t* offset,
         const char* buffer,
         std::uint32_t showEffectiveAddress);
 
-    using windbg_check_control_c = std::uint32_t (__stdcall)();
+    using windbg_check_control_c = std::uint32_t (__stdcall*)();
 
-    using windbg_read_process_memory_routine32 = std::uint32_t (__stdcall)(
+    using windbg_read_process_memory_routine32 = std::uint32_t (__stdcall*)(
         std::uint32_t offset,
         void* buffer,
         std::uint32_t bufferSize,
         std::uint32_t* bytesRead);
 
-    using windbg_read_process_memory_routine64 = std::uint32_t (__stdcall)(
+    using windbg_read_process_memory_routine64 = std::uint32_t (__stdcall*)(
         std::uint64_t offset,
         void* buffer,
         std::uint32_t bufferSize,
         std::uint32_t* bytesRead);
 
-    using windbg_write_process_memory_routine32 = std::uint32_t (__stdcall)(
+    using windbg_write_process_memory_routine32 = std::uint32_t (__stdcall*)(
         std::uint32_t offset,
         const void* buffer,
         std::uint32_t bufferSize,
         std::uint32_t* bytesWritten);
 
-    using windbg_write_process_memory_routine64 = std::uint32_t (__stdcall)(
+    using windbg_write_process_memory_routine64 = std::uint32_t (__stdcall*)(
         std::uint64_t offset,
         const void* buffer,
         std::uint32_t bufferSize,
         std::uint32_t* bytesWritten);
 
-    using windbg_get_thread_context_routine = std::uint32_t (__stdcall)(
+    using windbg_get_thread_context_routine = std::uint32_t (__stdcall*)(
         std::uint32_t processor,
         context* context,
         std::uint32_t sizeOfContext);
 
-    using windbg_set_thread_context_routine = std::uint32_t (__stdcall)(
+    using windbg_set_thread_context_routine = std::uint32_t (__stdcall*)(
         std::uint32_t processor,
         context* context,
         std::uint32_t sizeOfContext);
 
-    using windbg_ioctl_routine = std::uint32_t (__stdcall)(std::uint16_t ioctlType, void* data, std::uint32_t size);
+    using windbg_ioctl_routine = std::uint32_t (__stdcall*)(std::uint16_t ioctlType, void* data, std::uint32_t size);
 
-    using windbg_stacktrace_routine32 = std::uint32_t (__stdcall)(
+    using windbg_stacktrace_routine32 = std::uint32_t (__stdcall*)(
         std::uint32_t framePointer,
         std::uint32_t stackPointer,
         std::uint32_t programCounter,
         extstacktrace32* stackFrames,
         std::uint32_t frames);
 
-    using windbg_stacktrace_routine64 = std::uint32_t (__stdcall)(
+    using windbg_stacktrace_routine64 = std::uint32_t (__stdcall*)(
         std::uint64_t framePointer,
         std::uint64_t stackPointer,
         std::uint64_t programCounter,
@@ -214,33 +214,33 @@ namespace winsdk
     struct windbg_extension_apis32
     {
         std::uint32_t size;
-        windbg_output_routine* output_routine;
-        windbg_get_expression32* get_expression_routine;
-        windbg_get_symbol32* get_symbol_routine;
-        windbg_disasm32* disasm_routine;
-        windbg_check_control_c* check_control_c_routine;
-        windbg_read_process_memory_routine32* read_process_memory_routine;
+        windbg_output_routine output_routine;
+        windbg_get_expression32 get_expression_routine;
+        windbg_get_symbol32 get_symbol_routine;
+        windbg_disasm32 disasm_routine;
+        windbg_check_control_c check_control_c_routine;
+        windbg_read_process_memory_routine32 read_process_memory_routine;
         windbg_write_process_memory_routine32* write_process_memory_routine;
-        windbg_get_thread_context_routine* get_thread_context_routine;
-        windbg_set_thread_context_routine* set_thread_context_routine;
-        windbg_ioctl_routine* ioctl_routine;
+        windbg_get_thread_context_routine get_thread_context_routine;
+        windbg_set_thread_context_routine set_thread_context_routine;
+        windbg_ioctl_routine ioctl_routine;
         windbg_stacktrace_routine32* stack_trace_routine;
     };
 
     typedef struct windbg_extension_apis64
     {
         std::uint32_t size;
-        windbg_output_routine* output_routine;
-        windbg_get_expression64* get_expression_routine;
-        windbg_get_symbol64* get_symbol_routine;
-        windbg_disasm64* disasm_routine;
-        windbg_check_control_c* check_control_c_routine;
-        windbg_read_process_memory_routine64* read_process_memory_routine;
-        windbg_write_process_memory_routine64* write_process_memory_routine;
-        windbg_get_thread_context_routine* get_thread_context_routine;
-        windbg_set_thread_context_routine* set_thread_context_routine;
-        windbg_ioctl_routine* ioctl_routine;
-        windbg_stacktrace_routine64* stack_trace_routine;
+        windbg_output_routine output_routine;
+        windbg_get_expression64 get_expression_routine;
+        windbg_get_symbol64 get_symbol_routine;
+        windbg_disasm64 disasm_routine;
+        windbg_check_control_c check_control_c_routine;
+        windbg_read_process_memory_routine64 read_process_memory_routine;
+        windbg_write_process_memory_routine64 write_process_memory_routine;
+        windbg_get_thread_context_routine get_thread_context_routine;
+        windbg_set_thread_context_routine set_thread_context_routine;
+        windbg_ioctl_routine ioctl_routine;
+        windbg_stacktrace_routine64 stack_trace_routine;
     };
 
     struct extstacktrace32
@@ -1133,7 +1133,7 @@ namespace winsdk
         virtual std::int32_t __stdcall GetExtensionFunction(
             std::uint64_t handle,
             const char* funcName,
-            std::intptr_t(__stdcall* function)()) noexcept = 0;
+            farproc function) noexcept = 0;
         virtual std::int32_t __stdcall GetWindbgExtensionApis32(
             windbg_extension_apis32* api) noexcept = 0;
         virtual std::int32_t __stdcall GetWindbgExtensionApis64(
