@@ -7,19 +7,19 @@ extern "C"
 namespace winsdk
 {
     // Forward declarations
-    struct wsabuf;
+    struct wsa_buf;
     struct quality_of_service;
 
     // Type definitions
     using socket_t = std::uintptr_t;
 
     using condition_proc = std::int32_t(__stdcall*)(
-        wsabuf* callerId,
-        wsabuf* callerData,
+        wsa_buf* callerId,
+        wsa_buf* callerData,
         quality_of_service* sQOS,
         quality_of_service* gQOS,
-        wsabuf* calleeId,
-        wsabuf* calleeData,
+        wsa_buf* calleeId,
+        wsa_buf* calleeData,
         std::uint32_t* group,
         std::uint32_t callbackData);
 
@@ -86,7 +86,7 @@ namespace winsdk
     constexpr std::int32_t ipproto_max = 256;
 
     // Structures
-    struct wsadata
+    struct wsa_data
     {
         std::uint16_t version;
         std::uint16_t high_version;
@@ -162,7 +162,7 @@ namespace winsdk
         std::int16_t proto;
     };
 
-    struct wsabuf
+    struct wsa_buf
     {
         std::uint32_t length;
         char* buffer;
@@ -184,7 +184,7 @@ namespace winsdk
     {
         flowspec sending_flowspec;
         flowspec receiving_flowspec;
-        wsabuf provider_specific;
+        wsa_buf provider_specific;
     };
 
     struct socket_address
@@ -199,13 +199,13 @@ namespace winsdk
         socket_address address[1];
     };
 
-    struct wsaprotocolchain
+    struct wsa_protocol_chain
     {
         std::int32_t chain_length;
         std::uint32_t chain_entries[max_protocol_chain];
     };
 
-    struct wsaprotocol_infoa
+    struct wsa_protocol_infoa
     {
         std::uint32_t service_flags1;
         std::uint32_t service_flags2;
@@ -214,7 +214,7 @@ namespace winsdk
         std::uint32_t provider_flags;
         guid provider_id;
         std::uint32_t catalog_entry_id;
-        wsaprotocolchain protocol_chain;
+        wsa_protocol_chain protocol_chain;
         std::int32_t version;
         std::int32_t address_family;
         std::int32_t max_sock_addr;
@@ -229,7 +229,7 @@ namespace winsdk
         char protocol[wsaprotocol_len + 1];
     };
 
-    struct wsaprotocol_infow
+    struct wsa_protocol_infow
     {
         std::uint32_t service_flags1;
         std::uint32_t service_flags2;
@@ -238,7 +238,7 @@ namespace winsdk
         std::uint32_t provider_flags;
         guid provider_id;
         std::uint32_t catalog_entry_id;
-        wsaprotocolchain protocol_chain;
+        wsa_protocol_chain protocol_chain;
         std::int32_t version;
         std::int32_t address_family;
         std::int32_t max_sock_addr;
@@ -253,19 +253,19 @@ namespace winsdk
         wchar_t protocol[wsaprotocol_len + 1];
     };
 
-    struct wsanetworkevents
+    struct wsa_network_events
     {
         std::int32_t network_events;
         std::int32_t error_code[fd_max_events];
     };
 
-    struct wsamsg
+    struct wsa_msg
     {
         sockaddr* name;
         std::int32_t name_length;
-        wsabuf* buffers;
+        wsa_buf* buffers;
         std::uint32_t buffer_count;
-        wsabuf control;
+        wsa_buf control;
         std::uint32_t flags;
     };
 
@@ -348,7 +348,7 @@ namespace winsdk
         notify_apc,
     };
 
-    struct wsacompletion
+    struct wsa_completion
     {
         wsa_completion_type type;
         union
@@ -631,7 +631,7 @@ namespace winsdk
 
     // WinSock Extension Functions
     __declspec(dllimport)
-    std::int32_t __stdcall WSAStartup(std::uint16_t versionRequested, wsadata* data);
+    std::int32_t __stdcall WSAStartup(std::uint16_t versionRequested, wsa_data* data);
 
     __declspec(dllimport)
     std::int32_t __stdcall WSACleanup();
@@ -728,8 +728,8 @@ namespace winsdk
         socket_t socket,
         const sockaddr* name,
         std::int32_t nameLen,
-        wsabuf* callerData,
-        wsabuf* calleeData,
+        wsa_buf* callerData,
+        wsa_buf* calleeData,
         quality_of_service* sQOS,
         quality_of_service* gQOS);
 
@@ -772,27 +772,27 @@ namespace winsdk
     std::int32_t __stdcall WSADuplicateSocketA(
         socket_t socket,
         std::uint32_t processId,
-        wsaprotocol_infoa* protocolInfo);
+        wsa_protocol_infoa* protocolInfo);
 
     __declspec(dllimport)
     std::int32_t __stdcall WSADuplicateSocketW(
         socket_t socket,
         std::uint32_t processId,
-        wsaprotocol_infow* protocolInfo);
+        wsa_protocol_infow* protocolInfo);
 
     __declspec(dllimport)
-    std::int32_t __stdcall WSAEnumNetworkEvents(socket_t socket, handle_t eventObject, wsanetworkevents* networkEvents);
+    std::int32_t __stdcall WSAEnumNetworkEvents(socket_t socket, handle_t eventObject, wsa_network_events* networkEvents);
 
     __declspec(dllimport)
     std::int32_t __stdcall WSAEnumProtocolsA(
         std::int32_t* protocols,
-        wsaprotocol_infoa* protocolBuffer,
+        wsa_protocol_infoa* protocolBuffer,
         std::uint32_t* bufferLength);
 
     __declspec(dllimport)
     std::int32_t __stdcall WSAEnumProtocolsW(
         std::int32_t* protocols,
-        wsaprotocol_infow* protocolBuffer,
+        wsa_protocol_infow* protocolBuffer,
         std::uint32_t* bufferLength);
 
     __declspec(dllimport)
@@ -807,7 +807,7 @@ namespace winsdk
         std::uint32_t* flags);
 
     __declspec(dllimport)
-    bool_t __stdcall WSAGetQOSByName(socket_t socket, wsabuf* qosName, quality_of_service* qos);
+    bool_t __stdcall WSAGetQOSByName(socket_t socket, wsa_buf* qosName, quality_of_service* qos);
 
     __declspec(dllimport)
     std::int32_t __stdcall WSAHtonl(socket_t socket, std::uint32_t hostLong, std::uint32_t* netLong);
@@ -832,8 +832,8 @@ namespace winsdk
         socket_t socket,
         const sockaddr* name,
         std::int32_t namelen,
-        wsabuf* callerData,
-        wsabuf* calleeData,
+        wsa_buf* callerData,
+        wsa_buf* calleeData,
         quality_of_service* sQOS,
         quality_of_service* gQOS,
         std::uint32_t flags);
@@ -847,7 +847,7 @@ namespace winsdk
     __declspec(dllimport)
     std::int32_t __stdcall WSARecv(
         socket_t socket,
-        wsabuf* buffers,
+        wsa_buf* buffers,
         std::uint32_t bufferCount,
         std::uint32_t* numberOfBytesRecvd,
         std::uint32_t* flags,
@@ -855,12 +855,12 @@ namespace winsdk
         wsaoverlapped_completion_routine completionRoutine);
 
     __declspec(dllimport)
-    std::int32_t __stdcall WSARecvDisconnect(socket_t socket, wsabuf* inboundDisconnectData);
+    std::int32_t __stdcall WSARecvDisconnect(socket_t socket, wsa_buf* inboundDisconnectData);
 
     __declspec(dllimport)
     std::int32_t __stdcall WSARecvFrom(
         socket_t socket,
-        wsabuf* buffers,
+        wsa_buf* buffers,
         std::uint32_t bufferCount,
         std::uint32_t* numberOfBytesRecvd,
         std::uint32_t* flags,
@@ -875,7 +875,7 @@ namespace winsdk
     __declspec(dllimport)
     std::int32_t __stdcall WSASend(
         socket_t socket,
-        wsabuf* buffers,
+        wsa_buf* buffers,
         std::uint32_t bufferCount,
         std::uint32_t* numberOfBytesSent,
         std::uint32_t flags,
@@ -885,19 +885,19 @@ namespace winsdk
     __declspec(dllimport)
     std::int32_t __stdcall WSASendMsg(
         socket_t handle,
-        wsamsg* msg,
+        wsa_msg* msg,
         std::uint32_t flags,
         std::uint32_t* numberOfBytesSent,
         overlapped* overlapped,
         wsaoverlapped_completion_routine completionRoutine);
 
     __declspec(dllimport)
-    std::int32_t __stdcall WSASendDisconnect(socket_t socket, wsabuf* outboundDisconnectData);
+    std::int32_t __stdcall WSASendDisconnect(socket_t socket, wsa_buf* outboundDisconnectData);
 
     __declspec(dllimport)
     std::int32_t __stdcall WSASendTo(
         socket_t socket,
-        wsabuf* buffers,
+        wsa_buf* buffers,
         std::uint32_t bufferCount,
         std::uint32_t* numberOfBytesSent,
         std::uint32_t flags,
@@ -914,7 +914,7 @@ namespace winsdk
         std::int32_t af,
         std::int32_t type,
         std::int32_t protocol,
-        wsaprotocol_infoa* protocolInfo,
+        wsa_protocol_infoa* protocolInfo,
         std::uint32_t group,
         std::uint32_t flags);
 
@@ -923,7 +923,7 @@ namespace winsdk
         std::int32_t af,
         std::int32_t type,
         std::int32_t protocol,
-        wsaprotocol_infow* protocolInfo,
+        wsa_protocol_infow* protocolInfo,
         std::uint32_t group,
         std::uint32_t flags);
 
@@ -939,7 +939,7 @@ namespace winsdk
     std::int32_t __stdcall WSAAddressToStringA(
         sockaddr* address,
         std::uint32_t addressLength,
-        wsaprotocol_infoa* protocolInfo,
+        wsa_protocol_infoa* protocolInfo,
         char* addressString,
         std::uint32_t* addressStringLength);
 
@@ -947,7 +947,7 @@ namespace winsdk
     std::int32_t __stdcall WSAAddressToStringW(
         sockaddr* address,
         std::uint32_t addressLength,
-        wsaprotocol_infow* protocolInfo,
+        wsa_protocol_infow* protocolInfo,
         wchar_t* addressString,
         std::uint32_t* addressStringLength);
 
@@ -955,7 +955,7 @@ namespace winsdk
     std::int32_t __stdcall WSAStringToAddressA(
         char* addressString,
         std::int32_t addressFamily,
-        wsaprotocol_infoa* protocolInfo,
+        wsa_protocol_infoa* protocolInfo,
         sockaddr* address,
         std::int32_t* addressLength);
 
@@ -963,7 +963,7 @@ namespace winsdk
     std::int32_t __stdcall WSAStringToAddressW(
         wchar_t* addressString,
         std::int32_t addressFamily,
-        wsaprotocol_infow* protocolInfo,
+        wsa_protocol_infow* protocolInfo,
         sockaddr* address,
         std::int32_t* addressLength);
 
@@ -1002,7 +1002,7 @@ namespace winsdk
         void* outBuffer,
         std::uint32_t outBufferSize,
         std::uint32_t* bytesReturned,
-        wsacompletion* completion);
+        wsa_completion* completion);
 
     __declspec(dllimport)
     std::int32_t __stdcall WSALookupServiceEnd(handle_t lookup);
