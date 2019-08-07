@@ -226,7 +226,7 @@ namespace winsdk
         std::int32_t security_scheme;
         std::uint32_t message_size;
         std::uint32_t provider_reserved;
-        char protocol[wsaprotocol_len + 1];
+        char protocol_name[wsaprotocol_len + 1];
     };
 
     struct wsa_protocol_infow
@@ -250,7 +250,7 @@ namespace winsdk
         std::int32_t security_scheme;
         std::uint32_t message_size;
         std::uint32_t provider_reserved;
-        wchar_t protocol[wsaprotocol_len + 1];
+        wchar_t protocol_name[wsaprotocol_len + 1];
     };
 
     struct wsa_network_events
