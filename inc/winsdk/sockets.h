@@ -111,6 +111,24 @@ namespace winsdk
         char sa_data[14];
     };
 
+    struct in_addr
+    {
+        union
+        {
+            struct { std::uint8_t network, host, logical_host, impno; } bytes;
+            struct { std::uint16_t network, host; } words;
+            std::uint32_t addr;
+        } data;
+    };
+
+    struct sockaddr_in
+    {
+        std::uint16_t family;
+        std::uint16_t port;
+        in_addr addr;
+        char zero[8];
+    };
+
     struct fd_set
     {
         std::uint32_t count;
@@ -121,16 +139,6 @@ namespace winsdk
     {
         std::int32_t sec;
         std::int32_t usec;
-    };
-
-    struct in_addr
-    {
-        union
-        {
-            struct { std::uint8_t network, host, logical_host, impno; } bytes;
-            struct { std::uint16_t network, host; } words;
-            std::uint32_t addr;
-        } data;
     };
 
     struct  hostent
