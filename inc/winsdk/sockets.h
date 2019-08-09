@@ -85,6 +85,11 @@ namespace winsdk
     constexpr std::int32_t ipproto_raw = 255;
     constexpr std::int32_t ipproto_max = 256;
 
+    constexpr std::uint32_t inaddr_any = 0x00000000;
+    constexpr std::uint32_t inaddr_loopback = 0X7F000001;
+    constexpr std::uint32_t inaddr_broadcast = 0XFFFFFFFF;
+    constexpr std::uint32_t inaddr_none = 0XFFFFFFFF;
+
     // Structures
     struct wsa_data
     {
