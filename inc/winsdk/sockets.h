@@ -40,6 +40,7 @@ namespace winsdk
     constexpr std::size_t wsaprotocol_len = 255;
     constexpr std::size_t max_protocol_chain = 7;
     constexpr std::size_t fd_max_events = 10;
+    constexpr std::size_t inet_addrstrlen = 22;
 
     constexpr std::int32_t af_unspec = 0;
     constexpr std::int32_t af_unix = 1;
@@ -90,6 +91,10 @@ namespace winsdk
     constexpr std::uint32_t inaddr_broadcast = 0XFFFFFFFF;
     constexpr std::uint32_t inaddr_none = 0XFFFFFFFF;
 
+    constexpr std::uint32_t sd_receive = 0;
+    constexpr std::uint32_t sd_send = 1;
+    constexpr std::uint32_t sd_both = 2;
+
     // Structures
     struct wsa_data
     {
@@ -138,6 +143,31 @@ namespace winsdk
     {
         std::uint32_t count;
         socket_t array[fd_setsize];
+
+        void set(socket_t socket)
+        {
+            std::uint32_t i = 0;
+            for (; i < count; ++i)
+            {
+                if (array[i] == socket) break;
+            }
+
+            if ((i == count) && (count < fd_setsize))
+            {
+                array[i] = socket;
+                ++count;
+            }
+        }
+
+        bool is_set(socket_t socket)
+        {
+            for (std::uint32_t i = 0; i < count; ++i)
+            {
+                if (array[i] == socket) return true;
+            }
+
+            return false;
+        }
     };
 
     struct timeval
@@ -517,6 +547,15 @@ namespace winsdk
 
     __declspec(dllimport)
     char* __stdcall inet_ntoa(in_addr address);
+
+    __declspec(dllimport)
+    std::int32_t __stdcall inet_pton(std::int32_t family, const char* addrString, void* addrBuffer);
+
+    std::int32_t __stdcall InetPtonW(std::int32_t family, const wchar_t* addrString, void* addrBufuffer);
+
+    const char* __stdcall inet_ntop(std::int32_t family, const void* addr, char* buffer, std::size_t bufferSize);
+
+    const wchar_t* __stdcall InetNtopW(std::int32_t family, const void* addr, wchar_t* buffer, std::size_t bufferSize);
 
     inline std::uint64_t htonll(std::uint64_t value)
     {
