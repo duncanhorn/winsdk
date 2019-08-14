@@ -9,7 +9,7 @@ struct test_guard
     {
         if (name)
         {
-            printf("ERROR: Test '%s' failed\n", name);
+            std::printf("ERROR: Test '%s' failed\n", name);
         }
     }
 
@@ -19,3 +19,12 @@ struct test_guard
         return 0;
     }
 };
+
+#define CATCH_RETURN_ERROR() \
+    catch (std::exception& e) { \
+        std::printf("ERROR: Unhandled exception\nERROR: %s\n", e.what()); \
+        return 1; \
+    } catch (...) { \
+        std::printf("ERROR: Unhandled exception\n"); \
+        return 1; \
+    }
