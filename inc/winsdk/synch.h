@@ -26,6 +26,9 @@ namespace winsdk
         std::uint32_t milliseconds);
 
     __declspec(dllimport)
+    bool_t __stdcall GetOverlappedResult(handle_t file, overlapped* overlapped, std::uint32_t bytesRead, bool_t wait);
+
+    __declspec(dllimport)
     handle_t __stdcall CreateEventA(
         security_attributes* eventAttributes,
         bool_t manualReset,
