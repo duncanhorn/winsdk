@@ -43,13 +43,13 @@ namespace win32
 
     inline std::uint16_t set_console_attributes(winsdk::handle_t console, std::uint16_t attr, std::uint16_t mask = 0xFFFF)
     {
-            winsdk::console_screen_buffer_info info;
-            throw_last_error_if(!winsdk::GetConsoleScreenBufferInfo(console, &info));
+        winsdk::console_screen_buffer_info info;
+        throw_last_error_if(!winsdk::GetConsoleScreenBufferInfo(console, &info));
 
-            auto newAttr = (info.attributes & ~mask) | (attr & mask);
-            throw_last_error_if(!winsdk::SetConsoleTextAttribute(console, newAttr));
+        auto newAttr = (info.attributes & ~mask) | (attr & mask);
+        throw_last_error_if(!winsdk::SetConsoleTextAttribute(console, newAttr));
 
-            return info.attributes;
+        return info.attributes;
     }
 
     struct console_attribute_guard
