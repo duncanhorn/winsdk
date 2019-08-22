@@ -5,6 +5,7 @@ int unique_handle_tests();
 int event_tests();
 int unknown_tests();
 int environment_tests();
+int console_tests();
 
 int main() try
 {
@@ -13,6 +14,7 @@ int main() try
     result += event_tests();
     result += unknown_tests();
     result += environment_tests();
+    result += console_tests();
     return result;
 }
 catch (...)

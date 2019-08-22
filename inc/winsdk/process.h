@@ -22,10 +22,6 @@ namespace winsdk
     constexpr std::uint32_t startf_preventpinning = 0x00002000;
     constexpr std::uint32_t startf_untrustedsource = 0x00008000;
 
-    constexpr std::uint32_t std_input_handle = 0xFFFFFFF6; // -10
-    constexpr std::uint32_t std_output_handle = 0xFFFFFFF5; // -11
-    constexpr std::uint32_t std_error_handle = 0xFFFFFFF4; // -12
-
     // Structures
     struct startupinfoa
     {
@@ -122,8 +118,5 @@ namespace winsdk
     bool_t __stdcall GetExitCodeProcess(
         handle_t process,
         std::uint32_t* exitCode);
-
-    __declspec(dllimport)
-    handle_t __stdcall GetStdHandle(std::uint32_t stdHandle);
 }
 }
