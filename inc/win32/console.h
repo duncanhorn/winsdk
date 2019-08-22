@@ -41,7 +41,7 @@ namespace win32
     constexpr std::uint16_t background_gray = winsdk::background_red | winsdk::background_green | winsdk::background_blue;
     constexpr std::uint16_t background_white = background_gray | winsdk::background_intensity;
 
-    inline std::uint16_t set_console_attributes(winsdk::handle_t console, std::uint16_t attr, std::uint16_t mask = 0xFFFF)
+    inline std::uint16_t exchange_console_attributes(winsdk::handle_t console, std::uint16_t attr, std::uint16_t mask = 0xFFFF)
     {
         winsdk::console_screen_buffer_info info;
         throw_last_error_if(!winsdk::GetConsoleScreenBufferInfo(console, &info));
@@ -59,7 +59,7 @@ namespace win32
 
         console_attribute_guard(winsdk::handle_t console, std::uint16_t attr, std::uint16_t mask = 0xFFFF)
         {
-            restore_attributes = set_console_attributes(console, attr, mask);
+            restore_attributes = exchange_console_attributes(console, attr, mask);
             console_handle = console;
         }
 
