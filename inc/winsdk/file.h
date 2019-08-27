@@ -60,40 +60,6 @@ namespace winsdk
     constexpr std::uint32_t file_flag_first_pipe_instance = 0x00080000ul;
     constexpr std::uint32_t file_flag_open_requiring_oplock = 0x00040000ul;
 
-    constexpr std::uint32_t page_noaccess = 0x01;
-    constexpr std::uint32_t page_readonly = 0x02;
-    constexpr std::uint32_t page_readwrite = 0x04;
-    constexpr std::uint32_t page_writecopy = 0x08;
-    constexpr std::uint32_t page_execute = 0x10;
-    constexpr std::uint32_t page_execute_read = 0x20;
-    constexpr std::uint32_t page_execute_readwrite = 0x40;
-    constexpr std::uint32_t page_execute_writecopy = 0x80;
-    constexpr std::uint32_t page_guard = 0x100;
-    constexpr std::uint32_t page_nocache = 0x200;
-    constexpr std::uint32_t page_writecombine = 0x400;
-    constexpr std::uint32_t page_graphics_noaccess = 0x0800;
-    constexpr std::uint32_t page_graphics_readonly = 0x1000;
-    constexpr std::uint32_t page_graphics_readwrite = 0x2000;
-    constexpr std::uint32_t page_graphics_execute = 0x4000;
-    constexpr std::uint32_t page_graphics_execute_read = 0x8000;
-    constexpr std::uint32_t page_graphics_execute_readwrite = 0x10000;
-    constexpr std::uint32_t page_graphics_coherent = 0x20000;
-    constexpr std::uint32_t page_enclave_thread_control = 0x80000000;
-    constexpr std::uint32_t page_revert_to_file_map = 0x80000000;
-    constexpr std::uint32_t page_targets_no_update = 0x40000000;
-    constexpr std::uint32_t page_targets_invalid = 0x40000000;
-    constexpr std::uint32_t page_enclave_unvalidated = 0x20000000;
-    constexpr std::uint32_t page_enclave_decommit = 0x10000000;
-
-    constexpr std::uint32_t file_map_write = 0x00000002ul;
-    constexpr std::uint32_t file_map_read = 0x00000004ul;
-    constexpr std::uint32_t file_map_all_access = 0x000f001ful;
-    constexpr std::uint32_t file_map_execute = 0x00000020ul;
-    constexpr std::uint32_t file_map_copy = 0x00000001ul;
-    constexpr std::uint32_t file_map_reserve = 0x80000000ul;
-    constexpr std::uint32_t file_map_targets_invalid = 0x40000000ul;
-    constexpr std::uint32_t file_map_large_pages = 0x20000000ul;
-
     // Functions
     __declspec(dllimport)
     bool_t __stdcall CreateDirectoryA(const char* pathName, security_attributes* securityAttributes);
@@ -145,37 +111,5 @@ namespace winsdk
 
     __declspec(dllimport)
     bool_t __stdcall GetFileSizeEx(handle_t file, std::int64_t* fileSize);
-
-    __declspec(dllimport)
-    handle_t __stdcall CreateFileMappingA(
-        handle_t file,
-        security_attributes* fileMappingAttributes,
-        std::uint32_t protect,
-        std::uint32_t maximumSizeHigh,
-        std::uint32_t maximumSizeLow,
-        const char* name);
-
-    __declspec(dllimport)
-    handle_t __stdcall CreateFileMappingW(
-        handle_t file,
-        security_attributes* fileMappingAttributes,
-        std::uint32_t protect,
-        std::uint32_t maximumSizeHigh,
-        std::uint32_t maximumSizeLow,
-        const wchar_t* name);
-
-    __declspec(dllimport)
-    void* __stdcall MapViewOfFile(
-        handle_t fileMappingObject,
-        std::uint32_t dwDesiredAccess,
-        std::uint32_t fileOffsetHigh,
-        std::uint32_t fileOffsetLow,
-        std::size_t numberOfBytesToMap);
-
-    __declspec(dllimport)
-    bool_t __stdcall UnmapViewOfFile(const void* baseAddress);
-
-    __declspec(dllimport)
-    bool_t __stdcall FlushViewOfFile(const void* baseAddress, std::size_t numberOfBytesToFlush);
 }
 }

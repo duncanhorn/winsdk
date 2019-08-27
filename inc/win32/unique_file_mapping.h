@@ -2,7 +2,7 @@
 
 #include <cassert>
 
-#include "../winsdk/file.h"
+#include "../winsdk/memory.h"
 #include "unique_resource.h"
 
 namespace win32
