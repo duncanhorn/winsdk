@@ -46,7 +46,7 @@ namespace win32
         winsdk::console_screen_buffer_info info;
         throw_last_error_if(!winsdk::GetConsoleScreenBufferInfo(console, &info));
 
-        auto newAttr = (info.attributes & ~mask) | (attr & mask);
+        std::uint16_t newAttr = (info.attributes & ~mask) | (attr & mask);
         throw_last_error_if(!winsdk::SetConsoleTextAttribute(console, newAttr));
 
         return info.attributes;
