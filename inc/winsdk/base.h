@@ -24,6 +24,12 @@ namespace winsdk
     // Constants
     inline const handle_t invalid_handle_value = reinterpret_cast<handle_t>(static_cast<std::intptr_t>(-1));
 
+    constexpr std::uint32_t handle_flag_inherit = 0x00000001;
+    constexpr std::uint32_t handle_flag_protect_from_close = 0x00000002;
+
+    constexpr std::uint32_t duplicate_close_source = 0x00000001;
+    constexpr std::uint32_t duplicate_same_access = 0x00000002;
+
     // Structures
     struct security_attributes
     {
@@ -60,6 +66,22 @@ namespace winsdk
     // Functions
     __declspec(dllimport)
     bool_t __stdcall CloseHandle(handle_t handle);
+
+    __declspec(dllimport)
+    bool_t DuplicateHandle(
+        handle_t sourceProcess,
+        handle_t sourceHandle,
+        handle_t targetProcess,
+        handle_t* targetHandle,
+        std::uint32_t access,
+        bool_t inherit,
+        std::uint32_t options);
+
+    __declspec(dllimport)
+    bool_t SetHandleInformation(handle_t handle, std::uint32_t mask, std::uint32_t flags);
+
+    __declspec(dllimport)
+    bool_t GetHandleInformation(handle_t handle, std::uint32_t* flags);
 
     __declspec(dllimport)
     std::uint32_t __stdcall GetLastError();
